@@ -1,5 +1,7 @@
+/* App.css */
+
 .App {
-  text-align: center;
+  text-align: left;
 }
 
 .App-header {
@@ -7,16 +9,23 @@
   padding: 20px;
   color: white;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  align-items: center; /* Align items to center vertically */
+}
+
+.App-header-text {
+  /* Add a new class for the heading text */
+  margin-left: 150px; /* Adjust the margin as needed to position the text */
+  font-size: 24px; /* Adjust the font size as needed */
 }
 
 .App-logo {
   height: 100px;
+  margin-right: 90%; /* Adjust the margin as needed */
 }
 
 .App-body {
   margin: 20px;
+  color: rgb(132, 15, 15); /* Set the text color to white in the body */
 }
 
 .App-footer {
@@ -28,4 +37,3 @@
   width: 100%;
   text-align: center;
 }
-
