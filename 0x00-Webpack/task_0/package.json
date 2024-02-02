@@ -1,0 +1,19 @@
+{
+  "name": "task_0",
+  "version": "1.0.0",
+  "description": "0x00. Webpack\r Front-end\r JavaScript\r ES6\r  By: Johann Kerbrat, Engineering Manager at Uber Works\r  Weight: 1\r  Ongoing second chance project - started Jan 29, 2024 6:00 AM, must end by Feb 3, 2024 6:00 AM\r  An auto review will be launched at the deadline\r In a nutshell…\r Auto QA review: 1.0/36 mandatory\r Altogether:  2.78%\r Mandatory: 2.78%\r Optional: no optional tasks",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^5.90.1",
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "jquery": "^3.7.1"
+  }
+}
