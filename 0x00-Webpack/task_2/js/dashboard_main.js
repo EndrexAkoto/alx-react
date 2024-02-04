@@ -1,17 +1,19 @@
-// js/dashboard_main.js
-
 import $ from 'jquery'
 import _ from 'lodash'
-import '../css/main.css' // Import the main.css file
+import '../css/main.css'
+import '../assets/holberton-logo.jpg'
 
-$('body').append('<div id="logo"></div>')
+
+let count = 0
+$('body').append('<p>Holberton Dashboard</p>')
+$('body').append('<p>Dashboard data for the students</p>')
 $('body').append('<button>Click here to get started</button>')
-$('body').append('<p id="count"></p>')
+$('body').append("<p id='count'></p>")
 $('body').append('<p>Copyright - Holberton School</p>')
 
 function updateCounter() {
-  const count = $('#count').text() || 0
-  $('#count').text(`${parseInt(count) + 1} clicks on the button`)
+    count++
+    $('#count').html(`${count} clicks on the button`)
 }
-
-$('button').on('click', _.debounce(updateCounter, 500))
+const debounced = _.debounce(updateCounter, 500)
+$('button').on('click', debounced)
