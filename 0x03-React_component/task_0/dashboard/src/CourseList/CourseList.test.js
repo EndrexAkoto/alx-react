@@ -8,12 +8,12 @@ const listCourses = [
     { id: 3, name: "React", credit: 40 },
   ]
 
-describe('CoursList', () => {
-    it('CourseList rendres without crashing', () => {
+describe('CourseList', () => {
+    it('CourseList renders without crashing', () => {
         shallow(<CourseList />)
     })
 
-    it('CourseList rendes 5 rows', () => {
+    it('CourseList renders 5 rows', () => {
         const wrapper = shallow(<CourseList listCourses={listCourses} />)
         expect(wrapper.find('thead').children()).toHaveLength(2)
         expect(wrapper.find('tbody').children()).toHaveLength(3)
