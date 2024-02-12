@@ -3,38 +3,55 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = {
-  entry: {
-    header: './src/modules/header/header.js',
-    body: './src/modules/body/body.js',
-    footer: './src/modules/footer/footer.js',
-  },
-  output: {
-    filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'public'),
-  },
-  mode: 'development',
-  devServer: {
-    contentBase: path.join(__dirname, 'public'),
-    port: 8564,
-  },
-  module: {
-    rules: [
-      // ... your existing module rules
-    ],
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: './src/index.html',
-      inject: true,
-    }),
-    new CleanWebpackPlugin(),
-    // ... other plugins
-  ],
-  optimization: {
-    splitChunks: {
-      chunks: 'all',
+    mode: 'development',
+    entry: {
+        header: './modules/header/header.js',
+        body: './modules/body/body.js',
+        footer: './modules/footer/footer.js',
+    }, 
+    output: {
+        path: path.resolve(__dirname, 'public'),
+        filename: '[name].bundle.js'
     },
-  },
-  devtool: 'inline-source-map',
-  // ... other configurations
+    performance: {
+        hints: false,
+    },
+    devtool: 'inline-source-map',
+    plugins: [
+        new HtmlWebpackPlugin({
+            filename: './index.html',
+        }),
+        new CleanWebpackPlugin()
+    ],
+    optimization: {
+        splitChunks: {
+            chunks: 'all',
+        },
+    },
+    devServer: {
+        static: path.join(__dirname, './public'),
+        compress: true,
+        port: 8564,
+    },
+    module: {
+        rules: [
+            {
+                test: /\.css$/,
+                use: ["style-loader", "css-loader"],
+            },
+            {
+                test: /\.(png|svg|jpg|jpeg|gif)$/i,
+                use: [
+                    'file-loader',
+                    {
+                        loader: 'image-webpack-loader',
+                        options: {
+                            bypassOnDebug: true,
+                            disable: true,
+                        },
+                    },
+                ],
+            },
+        ],
+    },
 }

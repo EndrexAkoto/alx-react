@@ -8,34 +8,46 @@ var _require = require('clean-webpack-plugin'),
     CleanWebpackPlugin = _require.CleanWebpackPlugin;
 
 module.exports = {
+  mode: 'development',
   entry: {
-    header: './src/modules/header/header.js',
-    body: './src/modules/body/body.js',
-    footer: './src/modules/footer/footer.js'
+    header: './modules/header/header.js',
+    body: './modules/body/body.js',
+    footer: './modules/footer/footer.js'
   },
   output: {
-    filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'public')
+    path: path.resolve(__dirname, 'public'),
+    filename: '[name].bundle.js'
   },
-  mode: 'development',
-  devServer: {
-    contentBase: path.join(__dirname, 'public'),
-    port: 8564
+  performance: {
+    hints: false
   },
-  module: {
-    rules: [// ... your existing module rules
-    ]
-  },
+  devtool: 'inline-source-map',
   plugins: [new HtmlWebpackPlugin({
-    template: './src/index.html',
-    inject: true
-  }), new CleanWebpackPlugin() // ... other plugins
-  ],
+    filename: './index.html'
+  }), new CleanWebpackPlugin()],
   optimization: {
     splitChunks: {
       chunks: 'all'
     }
   },
-  devtool: 'inline-source-map' // ... other configurations
-
+  devServer: {
+    "static": path.join(__dirname, './public'),
+    compress: true,
+    port: 8564
+  },
+  module: {
+    rules: [{
+      test: /\.css$/,
+      use: ["style-loader", "css-loader"]
+    }, {
+      test: /\.(png|svg|jpg|jpeg|gif)$/i,
+      use: ['file-loader', {
+        loader: 'image-webpack-loader',
+        options: {
+          bypassOnDebug: true,
+          disable: true
+        }
+      }]
+    }]
+  }
 };
