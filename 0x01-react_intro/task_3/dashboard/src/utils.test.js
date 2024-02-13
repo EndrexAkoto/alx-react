@@ -1,33 +1,20 @@
-// task_3/dashboard/src/utils.test.js
-import { getFullYear, getFooterCopy, getLatestNotification } from './utils'
+const utils = require('./utils')
 
-describe('Utils Tests', () => {
-  // Test for getFullYear
-  it('should return the current year', () => {
+test('return current year', () => {
     const currentYear = new Date().getFullYear()
-    expect(getFullYear()).toEqual(currentYear)
-  })
+    expect(utils.getFullYear()).toBe(currentYear)
+})
 
-  // Test for getFooterCopy
-  it('should return correct string when isIndex is true', () => {
-    const result = getFooterCopy(true)
-    expect(result).toEqual('Holberton School')
-  })
+test('return footer with isIndex=true', () => {
+    const isIndex = true
+    expect(utils.getFooterCopy(isIndex)).toBe("Holberton School")
+})
 
-  it('should return correct string when isIndex is false', () => {
-    const result = getFooterCopy(false)
-    expect(result).toEqual('Holberton School main dashboard')
-  })
+test('return footer with isIndex=false', () => {
+    const isIndex = false
+    expect(utils.getFooterCopy(isIndex)).toBe("Holberton School main dashboard")
+})
 
-  // Test for getLatestNotification
-  it('should return the correct string for getLatestNotification', () => {
-    const expectedString = '<strong>Urgent requirement</strong> - complete by EOD'
-    expect(getLatestNotification()).toEqual(expectedString)
-  })
-
-  // Additional test for another function
-  // it('should test another function', () => {
-  //   const result = anotherFunction();
-  //   expect(result).toBe('expectedValue');
-  // });
+test('return correct latest notification', () => {
+    expect(utils.getLatestNotification()).toBe("<strong>Urgent requirement</strong> - complete by EOD")
 })
