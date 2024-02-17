@@ -3,12 +3,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const CourseListRow = ({isHeader, textFirstCell, textSecondCell}) => {
-    if (isHeader === true) {
+    if (isHeader) {
         if (textSecondCell === null || textSecondCell === undefined) {
             return (
-                <tr>
-                    <th colSpan={2}>{ textFirstCell }</th>
-                </tr>
+                <th colSpan="2">{ textFirstCell }</th>
             )
         } else {
             return (
@@ -18,14 +16,11 @@ const CourseListRow = ({isHeader, textFirstCell, textSecondCell}) => {
                 </tr>
             )
         }
-    } 
-    else {
-        return (
+    } else {
         <tr>
-            <th>{ textFirstCell }</th>
-            <th>{ textSecondCell }</th>
+            <td>{ textFirstCell }</td>
+            <td>{ textSecondCell }</td>
         </tr>
-        )
     }
 }
 

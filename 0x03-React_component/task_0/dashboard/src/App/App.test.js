@@ -3,7 +3,7 @@ import App from './App'
 import Header from '../Header/Header'
 import Login from '../Login/Login'
 import Footer from '../Footer/Footer'
-import { shallow, mount } from 'enzyme'
+import { shallow } from 'enzyme'
 
 
 describe('<App />', () => {
@@ -19,7 +19,7 @@ describe('<App />', () => {
     })
     
     it('App contains Login component', () => {
-        const wrapper = shallow(<App isLoggedIn={false} />)
+        const wrapper = shallow(<App />)
         const component = wrapper.find(Login)
         expect(component.exists()).toBe(true)
     })
@@ -29,5 +29,4 @@ describe('<App />', () => {
         const component = wrapper.find(Footer)
         expect(component.exists()).toBe(true)
     })
-
 })
