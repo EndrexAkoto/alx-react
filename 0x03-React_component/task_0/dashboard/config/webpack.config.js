@@ -1,10 +1,10 @@
-const path = require('path');
+const path = require('path')
 
 module.exports = {
-    mode: 'production',
+    mode: 'development', // Set the mode to development
     entry: {
-        main: path.resolve(__dirname, './js/dashboard_main.js')
-    }, 
+        main: path.resolve(__dirname, './src/index.js') // Update the entry point to src/index.js
+    },
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js'
@@ -30,7 +30,7 @@ module.exports = {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 use: {
-                  loader: 'babel-loader',
+                  loader: 'babel-loader', // Add the babel-loader for JS and JSX files
                 },
             },
             {
@@ -52,4 +52,4 @@ module.exports = {
             },
         ],
     },
-};
+}
