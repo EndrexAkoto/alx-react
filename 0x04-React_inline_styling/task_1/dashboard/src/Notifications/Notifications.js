@@ -30,7 +30,7 @@ class Notifications extends Component {
     return (
       <div className={css(styles.placing)}>
         {displayDrawer ? (
-          <div className={css(styles.NotificationStyle)}>
+          <div className={css(styles.NotificationSyle)}>
             
             <button
               style={{
