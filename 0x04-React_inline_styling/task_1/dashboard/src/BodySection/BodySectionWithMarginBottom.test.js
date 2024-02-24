@@ -1,88 +1,31 @@
-import React, { Component } from "react";
-import Header from "../Header/Header";
-import Footer from "../Footer/Footer";
-import Login from "../Login/Login";
-import Notifications from "../Notifications/Notifications";
-import PropTypes from "prop-types";
-import CourseList from "../CourseList/CourseList";
-import { getLatestNotification } from "../utils/utils";
-import BodySectionWithMarginBottom from "../BodySection/BodySectionWithMarginBottom";
-import BodySection from "../BodySection/BodySection";
-import { StyleSheet, css } from "aphrodite";
+import React from "react"
+import { shallow } from "enzyme"
+import BodySectionWithMarginBottom from "./BodySectionWithMarginBottom"
+import { StyleSheetTestUtils } from 'aphrodite' // Import StyleSheetTestUtils
 
-const listCourses = [
-  { id: 1, name: "ES6", credit: 60 },
-  { id: 2, name: "Webpack", credit: 20 },
-  { id: 3, name: "React", credit: 40 },
-];
+// Add this line to suppress style injection
+StyleSheetTestUtils.suppressStyleInjection()
 
-const listNotifications = [
-  { id: 1, type: "default", value: "New course available" },
-  { id: 2, type: "urgent", value: "New resume available" },
-  { id: 3, type: "urgent", html: getLatestNotification() },
-];
+describe("<BodySectionWithMarginBottom />", () => {
+  it("BodySectionWithMarginBottom renders without crashing", () => {
+    const wrapper = shallow(<BodySectionWithMarginBottom />)
+    expect(wrapper).toBeDefined()
+  })
 
-const styles = StyleSheet.create({
-  App: {
-    fontFamily: "Arial",
-    padding: "10px",
-    position: "relative",
-    minHeight: "100vh",
-  },
-});
+  it("BodySectionWithMarginBottom renders the correct title", () => {
+    const title = "Test Title"
+    const wrapper = shallow(
+      <BodySectionWithMarginBottom title={title} />
+    )
+    expect(wrapper.find("h2").text()).toEqual(title)
+  })
 
-class App extends Component {
-  static propTypes = {
-    isLoggedIn: PropTypes.bool,
-    logOut: PropTypes.func,
-  };
-  static defaultProps = {
-    isLoggedIn: false,
-    logOut: () => {},
-  };
-
-  componentDidMount() {
-    document.addEventListener("keydown", this.keydownEvent);
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener("keydown", this.keydownEvent);
-  }
-
-  keydownEvent = (e) => {
-    if (e.ctrlKey && e.key === "h") {
-      alert("Logging you out");
-      this.props.logOut();
-    }
-  };
-
-  render() {
-    const { isLoggedIn } = this.props;
-    return (
-      <div className={css(styles.App)}>
-        <Notifications listNotifications={listNotifications} />
-        <Header />
-        {isLoggedIn ? (
-          <BodySectionWithMarginBottom title="Course list">
-            <CourseList listCourses={listCourses} />
-          </BodySectionWithMarginBottom>
-        ) : (
-          <BodySectionWithMarginBottom title="Log in to continue">
-            <Login />
-          </BodySectionWithMarginBottom>
-        )}
-        <BodySection title="News from the School">
-          <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-          Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </p>
-        </BodySection>
-        <Footer />
-      </div>
-    );
-  }
-}
-
-export default App;
+  it("BodySectionWithMarginBottom renders children correctly", () => {
+    const wrapper = shallow(
+      <BodySectionWithMarginBottom>
+        <p>Test Children</p>
+      </BodySectionWithMarginBottom>
+    )
+    expect(wrapper.contains(<p>Test Children</p>)).toBe(true)
+  })
+})

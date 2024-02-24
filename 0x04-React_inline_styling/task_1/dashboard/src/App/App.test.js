@@ -4,6 +4,10 @@ import Header from "../Header/Header"
 import Login from "../Login/Login"
 import Footer from "../Footer/Footer"
 import { shallow, mount } from "enzyme"
+import { StyleSheetTestUtils } from 'aphrodite' // Import StyleSheetTestUtils
+
+// Add this line to suppress style injection
+StyleSheetTestUtils.suppressStyleInjection()
 
 describe("<App />", () => {
   it("App renders without crashing", () => {
@@ -38,13 +42,14 @@ describe("<App />", () => {
     expect(mockfunc).toHaveBeenCalled()
     wrapper.unmount()
   })
+
   it("alert is called with the string Logging you out", () => {
-  const wrapper = mount(<App />)
-  const spy = jest.spyOn(window, "alert")
-  const event = new KeyboardEvent("keydown", { ctrlKey: true, key: "h" })
-  document.dispatchEvent(event)
-  expect(spy).toHaveBeenCalled()
-  expect(spy).toHaveBeenCalledWith("Logging you out")
-  wrapper.unmount()
+    const wrapper = mount(<App />)
+    const spy = jest.spyOn(window, "alert")
+    const event = new KeyboardEvent("keydown", { ctrlKey: true, key: "h" })
+    document.dispatchEvent(event)
+    expect(spy).toHaveBeenCalled()
+    expect(spy).toHaveBeenCalledWith("Logging you out")
+    wrapper.unmount()
   })
 })
