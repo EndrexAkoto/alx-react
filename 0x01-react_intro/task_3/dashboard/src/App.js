@@ -1,6 +1,6 @@
-import logo from './holberton-logo.jpg'
-import './App.css'
-import { getFullYear, getFooterCopy } from './utils'
+import logo from './holberton-logo.jpg';
+import './App.css';
+import { getFullYear, getFooterCopy } from './utils';
 
 
 function App() {
@@ -30,4 +30,4 @@ function App() {
       )
     }
   
-export default App
+export default App;
