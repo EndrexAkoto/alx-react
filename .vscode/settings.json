@@ -1,3 +1,7 @@
 {
-    "compile-hero.disable-compile-files-on-did-save-code": false
+    "compile-hero.disable-compile-files-on-did-save-code": false,
+    "cmake.sourceDirectory": "C:/Users/AKOTO/VS code local/alx-react/0x03-React_component/task_0/dashboard/node_modules/nan",
+    "cSpell.words": [
+        "normalizr"
+    ]
 }
